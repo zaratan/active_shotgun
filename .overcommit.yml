@@ -1,0 +1,17 @@
+PreCommit:
+  RuboCop:
+    enabled: true
+    command: ['rubocop', '-P']
+    quiet: false
+  BundleOutdated:
+    enabled: true
+  BundleAudit:
+    enabled: true
+    command: ['bundle', 'audit', 'check', '--ignore', 'CVE-2015-9284']
+PrePush:
+  RSpec:
+    enabled: true
+    command: ['rspec', '-f', 'p'] # Invoke within Bundler context
+    quiet: false
+  Rubocop:
+    enabled: true
