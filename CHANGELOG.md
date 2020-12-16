@@ -6,9 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2020-12-16
+### Added
+- save, create, update, find, delete, revive (and friends)
+- Validations support
+- Callbacks support
+- AM::Dirty and many helpers
+### Missing
+- Query interface (where, find_by, first, all, order, offset)
+- Support Entity and Multi-Entity
+
 ## [0.0.1] - 2020-12-16
 ### Added
 - Gem init
 
-[Unreleased]: https://github.com/zaratan/active_shotgun/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/zaratan/active_shotgun/releases/tag/v0.1.1
+[Unreleased]: https://github.com/zaratan/active_shotgun/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/zaratan/active_shotgun/releases/tag/v0.0.2
+[0.0.1]: https://github.com/zaratan/active_shotgun/releases/tag/v0.0.1

@@ -28,10 +28,13 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency 'activemodel', '>= 5.2'
+  spec.add_dependency 'shotgun_api_ruby', '>= 0.0.8.2'
   spec.add_dependency 'zeitwerk', '~> 2'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'bundler-audit'
+  spec.add_development_dependency "dotenv"
   spec.add_development_dependency 'overcommit'
   spec.add_development_dependency 'pry-byebug'
   spec.add_development_dependency 'rake'
