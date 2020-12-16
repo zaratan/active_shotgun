@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_shotgun (0.0.2)
+    active_shotgun (0.0.2.1)
       activemodel (>= 5.2)
       shotgun_api_ruby (>= 0.0.8.2)
       zeitwerk (~> 2)
