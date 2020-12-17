@@ -4,7 +4,7 @@ module ActiveShotgun
   class Query
     def initialize(type:, klass:)
       @type = type
-      @klass = klass
+      @klass = klass.is_a?(String) ? klass.constantize : klass
       @conditions = nil
       @limit = 100
       @offset = 0
@@ -15,7 +15,9 @@ module ActiveShotgun
     extend Forwardable
     def_delegators(
       :to_a,
-      :each
+      :each,
+      :size,
+      :count
     )
     include Enumerable
 
@@ -31,7 +33,7 @@ module ActiveShotgun
       results.pop(page_calc[:end_trim])
       results.shift(page_calc[:start_trim])
 
-      results.map{ |result| @klass.new(result.attributes.to_h.merge(id: result.id)) }
+      results.map{ |result| @klass.parse_shotgun_results(result) }
     end
     alias_method :to_a, :all
 
@@ -55,7 +57,40 @@ module ActiveShotgun
     end
 
     def where(conditions)
-      @conditions = (@conditions || {}).merge(conditions)
+      @conditions ||= {}
+      @conditions =
+        case conditions
+        when Hash
+          case @conditions
+          when Hash
+            @conditions.merge(conditions)
+          when Array
+            @conditions + translate_hash_contitions_to_array(conditions)
+          else
+            raise "Unknow type. Please use Hash or Array conditions"
+          end
+        when Array
+          case @conditions
+          when Hash
+            translate_hash_contitions_to_array(@conditions) +
+            if conditions.first.is_a? Array
+              conditions
+            else
+              [conditions]
+            end
+          when Array
+            @conditions +
+            if conditions.first.is_a? Array
+              conditions
+            else
+              [conditions]
+            end
+          else
+            raise "Unknow type. Please use Hash or Array conditions"
+          end
+        else
+          @conditions
+        end
       self
     end
 
@@ -80,6 +115,12 @@ module ActiveShotgun
     end
 
     private
+
+    def translate_hash_contitions_to_array(hash_conditions)
+      hash_conditions.map do |k, v|
+        [k, "is", v]
+      end
+    end
 
     def format_page_from_limit_and_offset(limit, offset)
       min = (offset + 1).to_f
