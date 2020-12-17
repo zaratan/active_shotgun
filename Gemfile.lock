@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    active_shotgun (0.0.3)
+    active_shotgun (0.0.4)
       activemodel (>= 5.2)
       shotgun_api_ruby (>= 0.0.8.2)
       zeitwerk (~> 2)
@@ -100,7 +100,7 @@ GEM
       simplecov (>= 0.4.1)
     simplecov_json_formatter (0.1.2)
     thor (1.0.1)
-    tzinfo (2.0.3)
+    tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.7.0)
     yard (0.9.25)

@@ -17,6 +17,9 @@ AllCops:
 Naming/FileName:
   Enabled: false
 
+Naming/PredicateName:
+  Enabled: false
+
 Gemspec/RequiredRubyVersion:
   Enabled: false
 

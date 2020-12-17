@@ -58,6 +58,8 @@ module ActiveShotgun
       base_class.extend(Delete::ClassMethods)
       base_class.prepend(Validations)
       base_class.prepend(Callbacks)
+      base_class.include(Associations)
+      base_class.extend(Associations::ClassMethods)
     end
   end
 end
